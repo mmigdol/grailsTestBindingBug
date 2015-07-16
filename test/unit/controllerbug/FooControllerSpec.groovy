@@ -3,18 +3,15 @@ package controllerbug
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
-/**
- * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
- */
 @TestFor(FooController)
 class FooControllerSpec extends Specification {
 
-    def setup() {
-    }
+    void "test parameter binding"() {
+        when:
+        params.name = 'Chris Squire'
+        controller.someMethod()
 
-    def cleanup() {
-    }
-
-    void "test something"() {
+        then:
+        response.text == 'Chris Squire'
     }
 }
